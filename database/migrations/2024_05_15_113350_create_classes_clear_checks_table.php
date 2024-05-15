@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('users_id');
             $table->string('grade_id');
-            $table->tinyInteger('clear_flg')->change();
+            $table->tinyInteger('clear_flg');
             $table->timestamps();
         });
     }
