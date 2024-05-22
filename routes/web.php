@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+<<<<<<< ours
 //Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -39,3 +40,8 @@ Route::namespace('Admin')->name('admin')->group(function(){
 });
 
 
+=======
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+>>>>>>> theirs
