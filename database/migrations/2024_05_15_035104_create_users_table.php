@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('password');
             $table->string('plofile_image');
             $table->integer('classes_id');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 
