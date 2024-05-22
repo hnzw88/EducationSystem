@@ -16,9 +16,10 @@ return new class extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
-            $table->dateTime('posted_date');
+            $table->dateTime('posted_date')->nullable(false);
             $table->longText('article_contens');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 
