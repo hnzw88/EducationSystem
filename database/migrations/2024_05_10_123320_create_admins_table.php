@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('admins', function (Blueprint $table) {
           $table->bigIncrements('id');
           $table->string('name');
+          $table->string('kana');
           $table->string('email');
           $table->string('password');
           $table->timestamp('created_at')->useCurrent();

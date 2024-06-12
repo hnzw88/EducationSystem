@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('classes_clear_checks', function (Blueprint $table) {
             $table->id();
-            $table->string('users_id');
-            $table->string('grade_id');
+            $table->integer('users_id');
+            $table->integer('grade_id');
             $table->tinyInteger('clear_flg');
             $table->timestamps();
         });

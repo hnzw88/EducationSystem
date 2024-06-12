@@ -11,6 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 class Admin extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    protected $table = "admins";
 
     /**
      * The attributes that are mass assignable.
@@ -19,6 +20,7 @@ class Admin extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'kana',
         'email',
         'password',
     ];

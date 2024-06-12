@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('name-kana');
+            $table->string('name_kana');
             $table->string('email');
             $table->string('password');
-            $table->string('plofile_image');
-            $table->integer('classes_id');
+            $table->string('plofile_image')->nullable();
+            $table->integer('grade_id');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });

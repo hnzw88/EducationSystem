@@ -1,13 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\admin\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
 use App\Models\Admin;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+
+//use Illuminate\Http\Request;
+//use Illuminate\Auth\Events\Registered;
+
 
 class RegisterController extends Controller
 {
@@ -46,6 +51,11 @@ class RegisterController extends Controller
         return Auth::guard('admin');
     }
 
+    public function showRegisterForm()
+    {
+        return view('admin.auth.register');
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -56,6 +66,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'kana' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:admin'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -71,6 +82,7 @@ class RegisterController extends Controller
     {
         return Admin::create([
             'name' => $data['name'],
+            'kana' => $data['kana'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);

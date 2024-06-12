@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,23 +19,36 @@ Route::get('/', function () {
 
 //Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::namespace('User')->name('user')->group(function(){
     Route::get('/curriculum_list',[App\Http\controllers\User\CurriculumController::class,'showCurriculumList'])->name('show.curriculum');
 });
 
 Route::namespace('Admin')->name('admin')->group(function(){
-    Route::get('/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'showLoginForm'])->name('show.login');
-    Route::post('/login', [App\Http\Controllers\Admin\LoginController::class, 'login'])->name('show.top');
-    Route::get('/login', [App\Http\Controllers\Admin\LoginController::class, 'logout'])->name('show.login');
-    //Route::get('/register', [App\Http\Controllers\Admin\RegisterController::class, 'showRegisterForm'])->name('show.register');
-    //Route::post
+    //Auth::routes();
     
-    //Route::get('/top', [App\Http\Controllers\Admin\TopController::class, 'showTop'])->name('show.top');
+    //ログイン画面
+    Route::get('/admin/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'showLoginForm'])->name('show.login');
+    Route::post('/admin/login', [App\Http\Controllers\Admin\Auth\LoginController::class, 'login'])->name('admin.login.login');
+    Route::post('admin/logout', [App\Http\Controllers\Admin\Auth\LoginController::class,'logout'])->name('admin.login.logout');
+    
+    //管理ユーザー登録画面
+    Route::get('/admin/register', [App\Http\Controllers\Admin\Auth\RegisterController::class, 'showRegisterForm'])->name('show.register');
+    Route::post('/admin/register', [App\Http\Controllers\Admin\Auth\RegisterController::class, 'register']);
+    
+    Route::get('/admin/top', [App\Http\Controllers\Admin\TopController::class, 'showTop'])->middleware('auth:admin')->name('show.top');
+    
+    
+    
+    Route::get('/admin/register', [App\Http\Controllers\Admin\Auth\RegisterController::class, 'showRegisterForm'])->name('show.register');
+    //Route::post('/admin/register', [App\Http\Controllers\Admin\Auth\RegisterController::class, 'register']);//->name('show.register');
+    
     
     //Route::get('/banner_edit', [App\Http\Controllers\Admin\BannerController::class, 'showBannerEdit'])->name('show.banner.edit'); 
     //Route::post
 });
+
+
 
 

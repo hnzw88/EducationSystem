@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Auth;
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-//use App\Providers\RouteServiceProvider;
-//use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+
 
 class LoginController extends Controller
 {
@@ -22,70 +23,42 @@ class LoginController extends Controller
     */
     public function showLoginForm()
     {
-        return view('admin/login');
+        return view('admin.auth.login');
     }
 
-    public function login(Request $requset)
-    {
-        $credentials = $requset->only(['email','password']);
-        //ユーザー情報が見つかったらログイン
-        if(Auth::guard('admins')->attempt($credentials)){
-            //ログイン後に表示するページにリダイレクト
-            return redirect()->route('show.top')->with([
-                'login_msg'=>'ログインしました。',
-            ]);
-        }
-        return back()->withErrors([
-            'login'=>['ログインできませんでした']
-        ]);
+    use AuthenticatesUsers{
+      logout as perfomLogout;
     }
-
-    public function logout(Request $request)
-    {
-        Auth::guard('admins')->logout();
-        $request->session()->regenerateToken();
-        //ログインページにリダイレクト
-        return redirect()->route('show.login');
-    }
-
-
-
-   // use AuthenticatesUsers{
-     // logout as perfomLogout;
-    //}
 
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    //protected $redirectTo = '/admin/home';
+    protected $redirectTo = '/admin/home';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    //public function __construct()
-    //{
-      //  $this->middleware('guest:admin')->except('logout');
-    //}
+    public function __construct()
+    {
+        $this->middleware('guest:admin')->except('logout');
+    }
 
-    //protected function guard()
-    //{
-      //  return Auth::guard('admin');
-    //}
+    protected function guard()
+    {
+        return Auth::guard('admin');
+    }
 
-    //public function logout(Request $request)
-    //{
-      //  $this->performLogout($request);
-        //return redirect('admin/login');
-    //}
+    public function logout(Request $request)
+    {
+        $this->performLogout($request);
+        return redirect('admin/login');
+    }
 
-    //public function showLoginForm()
-    //{
-      //  return view('admin/login');
-    //}
+    
 
    
 }
