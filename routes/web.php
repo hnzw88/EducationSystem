@@ -29,10 +29,10 @@ Route::get('/user/login', [App\Http\Controllers\User\Auth\LoginController::class
 Route::get('/user/delivery/{id}', [App\Http\Controllers\DeliveryController::class, 'showDelivery'])->name('show.delivery');
 Route::get('/user/top', [App\Http\Controllers\TopController::class, 'showTop'])->name('show.top');
 
-Route::get('/user/home','/user/home');
-Route::get('/user/login','/user/auth/login');
+Route::view('/user/home','/user/home');
+Route::view('/user/login','/user/auth/login');
 Route::post('/user/login',[App\Http\Controllers\User\Auth\LoginController::class,'login'])->name('user.login');
 Route::post('/user/logout',[App\Http\Controllers\User\Auth\LoginController::class,'logout'])->name('user.logout');
 
-Route::get('/user/register','user/auth/register');
+Route::view('/user/register','user/auth/register');
 Route::post('/user/register',[App\Http\Controllers\User\Auth\RegisterController::class,'register'])->name('user.register');
