@@ -1,11 +1,29 @@
-@extends('Admin.layouts.app')
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@section('content')
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ __('管理画面') }}</title>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.bunny.net">
+    <link href="{{asset('/css/login_register.css')}}" rel="stylesheet">
+
+    <!-- Scripts -->
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+</head>
+<body>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('新規管理ユーザー登録') }}</div>
+            <a class="nav-link" href="{{url('admin/login')}}">{{ __('ログインはこちら') }}</a>
+            <h1>新規管理ユーザー登録</h1>
+            <div class="">
+                
                 
 
                 <div class="card-body">
@@ -89,4 +107,5 @@
         </div>
     </div>
 </div>
-@endsection
+</body>
+</html>

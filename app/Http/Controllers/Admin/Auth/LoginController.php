@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 
 class LoginController extends Controller
@@ -27,7 +29,7 @@ class LoginController extends Controller
     }
 
     use AuthenticatesUsers{
-      logout as perfomLogout;
+      logout as performLogout;
     }
 
     /**
@@ -35,7 +37,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin/home';
+    protected $redirectTo = '/admin/top';
 
     /**
      * Create a new controller instance.

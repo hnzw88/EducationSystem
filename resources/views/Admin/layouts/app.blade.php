@@ -11,18 +11,18 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link href="{{asset('/css/admin_app.css')}}" rel="stylesheet">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light ">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                  {{ __('管理画面') }}
-                </a>
+                <button class="btn" href="">{{ __('授業管理') }}</button>
+                <button class="btn" href="">{{ __('お知らせ管理') }}</button>
+                <button class="btn" href="">{{ __('バナー管理') }}</button>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -34,31 +34,30 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
+                    
+
                     <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
+                        <!-- Authentication Links -->                                    
+                                
                         @guest
                            
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{url('admin/login')}}">{{ __('ログインはこちら') }}</a>
+                                    <a class="nav-link" href="{{url('admin/login')}}">{{ __('ログイン') }}</a>
                                 </li>
                             
-
-                            
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{url('admin/register')}}">{{ __('新規登録') }}</a>
-                                </li>
+                                
                             
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                <a id="navbarDropdown" class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ __('ログアウト') }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('admin/logout') }}"
+                                    <a class="dropdown-item" href="{{url('admin/logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('ログアウト') }}
                                     </a>
 
                                     <form id="logout-form" action="{{url('admin/logout') }}" method="POST" class="d-none">
