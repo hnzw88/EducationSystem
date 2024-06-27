@@ -5,15 +5,15 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class BannerController extends Controller
+class ArticleController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth:admin');
     }
     
-    public function showBannerEdit()
+    public function showArticleList()
     {
-        return view('admin.banner_edit');
+        return view('admin.article_list');
     }
 }

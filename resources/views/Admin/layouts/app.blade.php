@@ -14,52 +14,37 @@
     <link href="{{asset('/css/admin_app.css')}}" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/js/app.js'])
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light ">
+        <nav class="navbar">
             <div class="container">
-                <button class="btn" href="">{{ __('授業管理') }}</button>
-                <button class="btn" href="">{{ __('お知らせ管理') }}</button>
-                <button class="btn" href="">{{ __('バナー管理') }}</button>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
+              
+                <div class="buttons"> 
+                    <button class="btn" type="button" onclick="location.href='./curriculum_list'">{{ __('授業管理') }}</a>
+                    <button class="btn" type="button" onclick="location.href='./article_list'">{{ __('お知らせ管理') }}</button>
+                    <button class="btn" type="button" onclick="location.href='./banner_edit'">{{ __('バナー管理') }}</button>
+                </div>
+                
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
                     <!-- Right Side Of Navbar -->
-                    
-
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->                                    
-                                
                         @guest
-                           
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{url('admin/login')}}">{{ __('ログイン') }}</a>
-                                </li>
-                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{url('admin/login')}}">{{ __('ログイン') }}</a>
+                            </li>
                                 
-                            
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ __('ログアウト') }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu " aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{url('admin/logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('ログアウト') }}
                                     </a>
-
                                     <form id="logout-form" action="{{url('admin/logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>

@@ -36,17 +36,14 @@ Route::namespace('Admin')->name('admin')->group(function(){
     //管理ユーザー登録画面
     Route::get('/admin/register', [App\Http\Controllers\Admin\Auth\RegisterController::class, 'showRegisterForm'])->name('show.register');
     Route::post('/admin/register', [App\Http\Controllers\Admin\Auth\RegisterController::class, 'register']);
-    
+    //トップページ
     Route::get('/admin/top', [App\Http\Controllers\Admin\TopController::class, 'showTop'])->middleware('auth:admin')->name('show.top');
-    
-    
-    
-    Route::get('/admin/register', [App\Http\Controllers\Admin\Auth\RegisterController::class, 'showRegisterForm'])->name('show.register');
-    //Route::post('/admin/register', [App\Http\Controllers\Admin\Auth\RegisterController::class, 'register']);//->name('show.register');
-    
-    
-    //Route::get('/banner_edit', [App\Http\Controllers\Admin\BannerController::class, 'showBannerEdit'])->name('show.banner.edit'); 
-    //Route::post
+    //お知らせ一覧
+    Route::get('/admin/article_list', [App\Http\Controllers\Admin\ArticleController::class, 'showArticleList'])->middleware('auth:admin')->name('show.article.list'); 
+    //バナー管理
+    Route::get('/admin/banner_edit', [App\Http\Controllers\Admin\BannerController::class, 'showBannerEdit'])->middleware('auth:admin')->name('show.banner.edit'); 
+    //授業一覧
+    Route::get('/admin/curriculum_list', [App\Http\Controllers\Admin\CurriculumController::class, 'showCurriculumList'])->middleware('auth:admin')->name('show.curriculum.list'); 
 });
 
 

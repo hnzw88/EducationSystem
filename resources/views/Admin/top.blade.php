@@ -13,9 +13,9 @@
                         </div>
                     @endif
                     @if (Auth::guard('admin')->check())
-                        <ul>
-                            <li>ユーザーネーム：{{Auth::guard('admin')->user()->name}}</li>
-                            <li>メールアドレス：{{Auth::guard('admin')->user()->email}}</li>
+                        <ul class="user">
+                            <li class="hyouzi">ユーザーネーム：{{Auth::guard('admin')->user()->name}}</li>
+                            <li class="hyouzi">メールアドレス：{{Auth::guard('admin')->user()->email}}</li>
                         </ul>    
                     @endif
                     
