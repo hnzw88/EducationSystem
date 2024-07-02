@@ -100,7 +100,7 @@ return [
         'array' => 'The :attribute must have at least :min items.',
         'file' => 'The :attribute must be at least :min kilobytes.',
         'numeric' => 'The :attribute must be at least :min.',
-        'string' => 'The :attribute must be at least :min characters.',
+        'string' => ':attributeは少なくとも :min 文字である必要があります。',
     ],
     'min_digits' => 'The :attribute must have at least :min digits.',
     'missing' => 'The :attribute field must be missing.',
@@ -151,6 +151,9 @@ return [
     'ulid' => 'The :attribute must be a valid ULID.',
     'uuid' => 'The :attribute must be a valid UUID.',
 
+    'katakana'=>':attributeはカタカナで入力してください。',
+    'hankaku'=>':attributeは半角英数字で入力してください。',
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
@@ -179,6 +182,11 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'kana'=>'カナ',
+        'password'=>'パスワード'
+    
+
+    ],
 
 ];
