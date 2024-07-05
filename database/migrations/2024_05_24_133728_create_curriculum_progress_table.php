@@ -18,7 +18,8 @@ return new class extends Migration
             $table->integer('curriculumus_id');
             $table->integer('users_id');
             $table->tinyInteger('clear_flg');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 
