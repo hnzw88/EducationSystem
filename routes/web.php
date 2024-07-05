@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +33,6 @@ Route::resource('/users', 'User\ArticleController');
 
 
 //admin用  登録・ログイン・ホーム
-// Route::namespace('Admin')->name('admin.')->group(function () {
 Route::view('/admin/login', 'admin/login');
 Route::post('/admin/login', [App\Http\Controllers\Admin\LoginController::class,'login']);
 Route::post('admin/logout', [App\Http\Controllers\Admin\LoginController::class,'logout']);
@@ -46,4 +45,3 @@ Route::view('/admin/password/reset', 'admin/password/email');
 Route::post('/admin/password/email', [App\Http\Controllers\Admin\ForgetPasswordController::class, 'sendResetLinkEmail']);
 Route::view('/admin/password/reset/{token}', [App\Http\Controllers\Admin\ResetPasswordController::class, 'showResetForm']);
 Route::post('/admin/password/reset', [App\Http\Controllers\Admin\ResetPasswordController::class, 'reset']);
-// });
