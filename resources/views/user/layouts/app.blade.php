@@ -17,6 +17,17 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ route('#') }}">時間割</a></li>
+                <li><a href="{{ route('#') }}">授業進捗</a></li>
+                <li><a href="{{ route('#') }}">プロフィール設定</a></li>
+                <li><a href="{{ route('user.logout') }}">ログアウト</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">

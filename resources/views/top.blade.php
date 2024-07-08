@@ -7,17 +7,15 @@
             <div class="card">
                 <div class="card-header">{{ __('トップ画面') }}</div>
 
-                <div>お知らせ</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
+                <div class="banner">
+                    <img src="{{ asset('images/banner.jpg') }}" alt="Banner">
                 </div>
+
+                <div class="announcements">
+                    <h2>お知らせ</h2>
+                    <p>最新のお知らせをここに表示します。</p>
+                </div>
+                
             </div>
         </div>
     </div>
