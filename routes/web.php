@@ -27,7 +27,7 @@ Route::get('/user/home', [App\Http\Controllers\HomeController::class, 'index'])-
 Route::get('/user/register', [App\Http\Controllers\User\Auth\RegisterController::class, 'showRegisterForm'])->name('show.register');
 Route::get('/user/login', [App\Http\Controllers\User\Auth\LoginController::class, 'showLoginForm'])->name('show.login');
 Route::get('/user/delivery/{id}', [App\Http\Controllers\DeliveryController::class, 'showDelivery'])->name('show.delivery');
-Route::get('/user/top', [App\Http\Controllers\TopController::class, 'showTop'])->name('show.top');
+Route::get('/top', [App\Http\Controllers\TopController::class, 'showTop'])->name('show.top');
 
 Route::view('/user/home','/user/home');
 Route::view('/user/login','/user/auth/login');

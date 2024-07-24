@@ -10,15 +10,20 @@ use Illuminate\Support\Facades\Auth;
 class TopController extends Controller
 {
     public function showTop(){
-        return view('user.top');
-    }
 
-    public function index()
-    {
         // articlesテーブルから全データを取得
         $articles = Article::all();
 
         // ビューにデータを渡す
-        return view('user.top', compact('articles'));
+        return view('/top', ['articles' => $articles]);
     }
+
+    //public function index()
+    //{
+        // articlesテーブルから全データを取得
+        //$articles = Article::all();
+
+        // ビューにデータを渡す
+        //return view('/top', ['articles' => $articles]);
+    //}
 }
