@@ -11,10 +11,12 @@
                     <img src="{{ asset('images/banner.jpg') }}" alt="Banner">
                 </div>
 
-                <div class="announcements">
-                    <h2>お知らせ</h2>
-                    <p>最新のお知らせをここに表示します。</p>
-                </div>
+                <h1>お知らせ</h1>
+                <ul>
+                    @foreach ($articles as $article)
+                    <li>{{ $article->posted_date }} {{ $article->title }}</li>
+                    @endforeach
+                </ul>
                 
             </div>
         </div>

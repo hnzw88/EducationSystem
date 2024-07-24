@@ -19,6 +19,6 @@ class TopController extends Controller
         $articles = Article::all();
 
         // ビューにデータを渡す
-        return view('top', compact('articles'));
+        return view('user.top', compact('articles'));
     }
 }
