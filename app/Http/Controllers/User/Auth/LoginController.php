@@ -49,7 +49,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/user/top';
+    protected $redirectTo = '/top';
 
     /**
      * Create a new controller instance.

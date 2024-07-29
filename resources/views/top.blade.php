@@ -5,18 +5,29 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('トップ画面') }}</div>
+                <!-- <div class="card-header">{{ __('トップ画面') }}</div> -->
 
-                <div class="banner">
-                    <img src="{{ asset('images/banner.jpg') }}" alt="Banner">
+                <div class="banner-section">
+                    @foreach($banners as $banner)
+                        <img src="{{ asset('storage/' . $banner->image) }}" alt="Banner Image" class="banner-image">
+                    @endforeach
+                    <div class="banner-dots">
+                        @foreach($banners as $index => $banner)
+                            <span class="dot" onclick="currentSlide({{ $index + 1 }})"></span>
+                        @endforeach
+                    </div>
                 </div>
 
-                <h1>お知らせ</h1>
-                <ul>
-                    @foreach ($articles as $article)
-                    <li>{{ $article->posted_date }} {{ $article->title }}</li>
-                    @endforeach
-                </ul>
+                <div class="articles-section">
+                    <h2>お知らせ</h2>
+                    <ul>
+                        @foreach($articles as $article)
+                            <li>
+                                <a href="{{ url('/user/login') }}">{{ $article->title }}</a> - {{ $article->posted_date }}
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
                 
             </div>
         </div>
