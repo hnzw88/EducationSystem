@@ -66,6 +66,39 @@ a.dropdown-item,.nav-link{
 .backtop{
     text-decoration: none;
 }
+
+
+.del,.delete{
+    font-weight: bold;
+    border-radius: 50%;
+    color: white;
+    background-color: red;
+    border: 0cap;
+  }
+.plus{
+    font-weight: bold;
+    border-radius: 50%;
+    color: white;
+    background-color: green;
+    border: 0cap;
+}  
+.touroku{
+    width: 150px;
+    
+}
+.sample{
+    width: 150px;
+    height: 90px;
+    border: 0.1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+
+
 @media screen and (max-width: 959px) {
 	/* 959px以下に適用されるCSS（タブレット用） */
 }

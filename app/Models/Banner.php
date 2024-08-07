@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use App\Http\Requests\BannerRequest;
 use DB;
 
 class Banner extends Model
@@ -28,24 +29,13 @@ class Banner extends Model
     public function registerBanner($data)
     {
         DB::table('banners')->insert([
-            'imege'=>$data->image,
+            'image'=>$data->image,
             'created_at'=>now(),
              
         ]);
     }
-    public function editBanner($repest,$banner)
-    {
-        $result = $banner->fill([
-            'image'=>$repest->image,
-            'updated_at'=>now(),
-        ])->save();
-        return $result;
-
-    }
-    public function deleteBanner()
-    {
-
-    }
+    
+    
 
 
 }

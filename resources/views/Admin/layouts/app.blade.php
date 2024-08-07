@@ -12,6 +12,8 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="{{asset('/css/admin_app.css')}}" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="{{ asset('/js/admin.js') }}"></script>
 
     <!-- Scripts -->
     @vite(['resources/js/app.js'])
@@ -22,7 +24,7 @@
             <div class="container">
               
                 <div class="buttons"> 
-                    <button class="btn" type="button" onclick="location.href='./curriculum_list'">{{ __('授業管理') }}</a>
+                    <button class="btn" type="button" onclick="location.href='./curriculum_list'">{{ __('授業管理') }}</button>
                     <button class="btn" type="button" onclick="location.href='./article_list'">{{ __('お知らせ管理') }}</button>
                     <button class="btn" type="button" onclick="location.href='./banner_edit'">{{ __('バナー管理') }}</button>
                 </div>
@@ -60,5 +62,6 @@
             @yield('content')
         </main>
     </div>
+    
 </body>
 </html>

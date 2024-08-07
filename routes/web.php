@@ -21,11 +21,11 @@ Route::get('/', function () {
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::namespace('User')->name('user')->group(function(){
-    Route::get('/curriculum_list',[App\Http\controllers\User\CurriculumController::class,'showCurriculumList'])->name('show.curriculum');
-});
+//Route::namespace('User')->name('user.')->group(function(){
+  //  Route::get('/curriculum_list',[App\Http\controllers\User\CurriculumController::class,'showCurriculumList'])->name('show.curriculum');
+//});
 
-Route::namespace('Admin')->name('admin')->group(function(){
+Route::namespace('Admin')->name('admin.')->group(function(){
     //Auth::routes();
     
     //ログイン画面
@@ -41,7 +41,10 @@ Route::namespace('Admin')->name('admin')->group(function(){
     //お知らせ一覧
     Route::get('/admin/article_list', [App\Http\Controllers\Admin\ArticleController::class, 'showArticleList'])->middleware('auth:admin')->name('show.article.list'); 
     //バナー管理
-    Route::get('/admin/banner_edit', [App\Http\Controllers\Admin\BannerController::class, 'showBannerEdit'])->middleware('auth:admin')->name('show.banner.edit'); 
+    Route::get('/admin/banner_edit', [App\Http\Controllers\Admin\BannerController::class, 'showBannerEdit'])->name('show.banner.edit'); 
+    Route::post('/admin/delete/{id}',[App\Http\Controllers\Admin\BannerController::class, 'delete'])->name('delete');
+    Route::post('/admin/create',[App\Http\Controllers\Admin\BannerController::class, 'create'])->name('create');
+    
     //授業一覧
     Route::get('/admin/curriculum_list', [App\Http\Controllers\Admin\CurriculumController::class, 'showCurriculumList'])->middleware('auth:admin')->name('show.curriculum.list'); 
 });
