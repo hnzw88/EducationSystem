@@ -1,6 +1,7 @@
 $(function(){
     var i = 0;
-    $(".plus").on("click",function(){
+    $(".plus").on("click",function(e){
+        e.preventDefault()
     
         ++i;
         var form =''+ `
@@ -25,15 +26,43 @@ $(function(){
         }
     });
 });
+
+
+function deleteAjax(){ 
 $(function(){
-    $(".delete").on("click",function(){
+    $(".delete").on("click",function(e){
+        e.preventDefault()
+        
+        $.ajaxSetup({
+            headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')},
+        })
+
         var deleteConfirm = window.confirm('本当に削除してよろしいですか？');
-        if(deleteConfirm){
-            alert('削除しました。');
+        
+        if(deleteConfirm == true){
+            var clickEle = $(this)
+            var bannerID = clickEle.attr('data-banner_id');
+            $.ajax({
+
+                url:"destroy/"+bannerID,
+                type:"POST",
+                data:{'id':bannerID},
+                dataType:"text"
+
+            })
+            .done(function(){
+                clickEle.parents('tr').remove();
+                alert('削除しました。');
+            })
+            .fail(function(){
+                alert('削除に失敗しました。');
+            });
         }else{
-            alert('削除をやめました。');
-        }
+            window.alert('削除をやめました。')
+            return false;
+        };
     });
-    
 });
+};
+deleteAjax();
 

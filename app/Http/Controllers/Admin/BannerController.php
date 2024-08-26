@@ -24,12 +24,12 @@ class BannerController extends Controller
         return view('admin.banner_edit',['banners'=>$banners]);
     }
 
-    public function delete(Request $request)
+    public function destroy(Request $request)
     {
         DB::beginTransaction();
 
         try{
-            $banner = Banner::find($request->id);
+            $banner = Banner::findOrFail($request->id);
             //$bannerFileName =$banner->image;
             //$deletePath = storage_path().'public/storage/images/banner'.$bannerFileName;
             //\File::delete($deletePath);

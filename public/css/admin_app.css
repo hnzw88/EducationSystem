@@ -69,6 +69,7 @@ a.dropdown-item,.nav-link{
 
 
 .del,.delete{
+    height: 25px;
     font-weight: bold;
     border-radius: 50%;
     color: white;
@@ -94,6 +95,12 @@ a.dropdown-item,.nav-link{
     justify-content: center;
     align-items: center;
 
+}
+.grade-btn{
+    border-radius: 50px;
+    height: 30px;
+    width: 100px;
+    background-color: rgb(121, 121, 245);
 }
 
 

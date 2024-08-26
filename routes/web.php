@@ -21,9 +21,18 @@ Route::get('/', function () {
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//Route::namespace('User')->name('user.')->group(function(){
-  //  Route::get('/curriculum_list',[App\Http\controllers\User\CurriculumController::class,'showCurriculumList'])->name('show.curriculum');
-//});
+Route::namespace('User')->name('user.')->group(function(){
+    //ログイン画面
+    Route::get('/user/login',[App\Http\Controllers\User\Auth\LoginController::class,'showloginForm'])->name('show.login');
+    Route::post('/user/login', [App\Http\Controllers\User\Auth\LoginController::class, 'login'])->name('user.login.login');
+    Route::post('user/logout', [App\Http\Controllers\User\Auth\LoginController::class,'logout'])->name('user.login.logout');
+    //トップページ
+    Route::get('/user/top', [App\Http\Controllers\User\TopController::class, 'showTop'])->middleware('auth:user')->name('show.top');
+    
+    //授業一覧画面
+    Route::get('/user/curriculum_list',[App\Http\controllers\User\CurriculumController::class,'showCurriculumList'])->middleware('auth:user')->name('show.curriculum');
+    Route::get('/user/curriculum_scope',[App\Http\controllers\User\CurriculumController::class,'curriculum_scope'])->name('curriculum_scope');
+});
 
 Route::namespace('Admin')->name('admin.')->group(function(){
     //Auth::routes();
@@ -42,7 +51,7 @@ Route::namespace('Admin')->name('admin.')->group(function(){
     Route::get('/admin/article_list', [App\Http\Controllers\Admin\ArticleController::class, 'showArticleList'])->middleware('auth:admin')->name('show.article.list'); 
     //バナー管理
     Route::get('/admin/banner_edit', [App\Http\Controllers\Admin\BannerController::class, 'showBannerEdit'])->name('show.banner.edit'); 
-    Route::post('/admin/delete/{id}',[App\Http\Controllers\Admin\BannerController::class, 'delete'])->name('delete');
+    Route::post('/admin/destroy/{id}',[App\Http\Controllers\Admin\BannerController::class, 'destroy'])->name('destroy');
     Route::post('/admin/create',[App\Http\Controllers\Admin\BannerController::class, 'create'])->name('create');
     
     //授業一覧

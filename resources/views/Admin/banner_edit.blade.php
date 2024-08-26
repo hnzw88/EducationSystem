@@ -23,9 +23,9 @@
                     </td>
                 
                     <td>
-                        <form action="{{route('admin.delete',$banner->id)}}" method="post" >
+                        <form action="{{route('admin.destroy',$banner->id)}}" method="post" >
                             @csrf
-                            <button type="submit" class="delete" name="delete" value="削除"><span="mozi">{{__('－')}}</span></button>
+                            <input data-banner_id="{{$banner->id}}"type="submit" class="delete" name="delete" value="―">
                         </form> 
                     </td>
                        
