@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('name-kana');
+            $table->string('name-kana')->default('')->change();
             $table->string('email');
             $table->string('password');
             $table->string('plofile_image');
@@ -32,6 +32,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+      Schema::table('users', function (Blueprint $table) {
+      $table->string('name-kana')->default(null)->change();
+  });
     }
 };

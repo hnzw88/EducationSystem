@@ -1,0 +1,75 @@
+* {
+  margin: 0;
+}
+h1{
+  color: red;
+}
+.top{
+  display: flex;
+  margin: 10px 0;
+}
+
+.btn-success{
+  margin-left: -75px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+.main{
+  /* margin-left: 20px; */
+  font-size: 20px
+  /* margin-top:10px; */
+  margin-bottom: 100px;
+}
+
+.sub{
+  width:100%;
+
+  display: flex;
+  margin: 10px 0;
+  padding: 0;
+}
+
+.sub ul{
+  width: 20%;
+}
+
+.subject{
+width:80%;
+display:flex;
+justify-content: flex-start;
+flex-wrap: wrap;
+
+}
+
+.subject ul {
+    padding-left: 0;
+    list-style-type: none; /* 必要に応じてリストスタイルを解除 */
+}
+
+.subbox{
+  width:calc(80%/3);/* 横幅を3等分 */
+  box-sizing:border-box;/* 装飾用 */
+  height:auto;
+  padding: 5px; /* 例: パディングを小さくする */
+  margin: 5px;
+  border:1px solid #ccc;/* 装飾用 */
+
+}
+
+
+.btn {
+    display: inline-block;
+    padding: 0px 0px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    margin: 5px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+}
+
