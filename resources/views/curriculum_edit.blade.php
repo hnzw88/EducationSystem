@@ -57,6 +57,10 @@
             <label for="price">授業概要</label>
         </div>
 
+        <label>
+       　　<li><input type="checkbox" name="tags[]" value="{{ $curriculums->id }}"?>常時公開</li>
+        </label>
+
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">登録</button>
 

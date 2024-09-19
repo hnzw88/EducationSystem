@@ -42,9 +42,13 @@ class CurriculumController extends Controller
        ]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $curriculumNew=new Curriculum();
+        $curriculumNew->save();
+
+        return redirect(curriculum_list);
+
     }
 
     public function showCurriculumEdit($id)
@@ -127,4 +131,17 @@ class CurriculumController extends Controller
       // ]);
 
     }
+
+
+    public function store(Request $request)
+{
+    $schedules = $request->input('schedule');
+    
+    foreach ($schedules as $schedule) {
+        // 各配送スケジュールを保存
+        // Schedule::create($schedule);
+    }
+
+    return redirect()->back()->with('delivery', 'データが保存されました');
+}
 }
