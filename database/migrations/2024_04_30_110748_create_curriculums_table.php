@@ -20,7 +20,7 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->mediumText('video_url')->nullable();
             $table->tinyInteger('alway_delivery_flg');
-            $table->integer('grade_id')->length(10);
+            $table->foreignId('grade_id')->constrained();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
             

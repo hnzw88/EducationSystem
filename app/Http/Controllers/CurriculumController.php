@@ -7,16 +7,13 @@ use App\Models\Curriculum;
 use App\Models\Grade;
 use App\Models\DeliveryTime;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 
 class CurriculumController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function showCurriculumList($id)
+
+    public function showCurriculumList($id=1)
     {
 
       $grades = Grade::all();
@@ -42,25 +39,17 @@ class CurriculumController extends Controller
        ]);
     }
 
-    public function create(Request $request)
-    {
-        $curriculumNew=new Curriculum();
-        $curriculumNew->save();
-
-        return redirect(curriculum_list);
-
-    }
 
     public function showCurriculumEdit($id)
     {
 
 
         $grades = Grade::all();
-        $curriculums = Curriculum::find($id);
+        $curriculum = Curriculum::find($id);
 
         return view('curriculum_edit')->with([
           'grades'=>$grades,
-          'curriculums'=>$curriculums
+          'curriculum'=>$curriculum
         ]);
     }
 
@@ -81,35 +70,124 @@ class CurriculumController extends Controller
 
     }
 
+
+
+
+public function showCurriculumCreate(Request $request)
+{
+ 
+  $grades = Grade::select('id', 'name')->get();
+
+  return view('curriculum_create')->with([
+    'grades'=>$grades
+  ]);
+
+}
+
+
+
+//新規登録
+public function storeCurriculumCreate(Request $request)
+{
+//dd($request);
+
+DB::beginTransaction();
+
+
+try {
+  
+  $test_image = $request->file('thumbnail');
+  
+  if($test_image){
+    //dd($test_image);
+
+    // sampleディレクトリに画像を保存publicサンプル中に
+    $file_name = $request->file('thumbnail')->getClientOriginalName();
+    //dd($file_name);
+    $request->file('thumbnail')->storeAs('public', $file_name);
+    $alwaysDeliveryFlag = $request->has('alway_delivery_flg') ? 1 : 0;
+    $path = 'storage/'.$file_name;
+  }else{
+    $file_name = null;
+    //dd($file_name);
+  }
+
+    // // 登録処理呼び出し
+    // $model = new Curriculum();
+    // $model->createCurriculum($request, $file_name);
+    // $model->alway_delivery_flg = $alwaysDeliveryFlag;
+
+    // $model->save();
+
+
+
+    Curriculum::create([
+      'title' => $request->title,
+      'thumbnail' => $path,
+      'description' => $request->description,
+      'video_url' => $request->video_url,
+      //'alway_delivery_flg' => $request->alway_delivery_flg,
+      'alway_delivery_flg' => $alwaysDeliveryFlag,
+      'grade_id' => $request->grade_id
+  ]);
+
+
+
+
+    DB::commit();
+} catch (\Exception $e) {
+    DB::rollback();
+    return back();
+}
+
+
+// 処理が完了したらshow.curriculum.listにリダイレクト
+return redirect(route('show.curriculum.list'));
+
+}
+
+
     public function update(Request $request, $id)
     {
-      $model = new Curriculum();
+      
+      //dd($request);
+      $curriculum = Curriculum::find($id);
+      
 
-      $dir = 'sample';
-
-      $test_image = $request->file('img_path');
+      
 
       DB::beginTransaction();
       try{
-          if($test_image){
 
-           // アップロードされたファイル名を取得
-          $file_name = $request->file('img_path')->getClientOriginalName();
-          $model->registupdate($request, $file_name, $id);
-          $request->file('img_path')->storeAs('public/' . $dir, $file_name);
+        $image = $request->file('thumbnail');
 
+        if($image === null){
+          $file_name = $curriculum->thumbnail;
+
+          //dd($file_name);
         }else{
-          $model->imgupdate($request, $id);
 
+          \Illuminate\Support\Facades\File::delete($curriculum->thumbnail);
+          $img_name = $image->getClientOriginalName();
+
+          $file_name = 'public/' . $img_name;
+          $image->storeAs('public/', $img_name);
+
+          //dd($img_name);
+
+          
         }
 
+        $curriculum->updateCurriculum($request, $curriculum,$file_name);
+        
+       // dd($request);
         DB::commit();
       }catch (\Exception $e) {
           DB::rollback();
           return back();
       }
 
-        return redirect(route('curriculum_edit',['id'=>$id]));
+        return redirect(route('show.curriculum.list'));
     }
 
     /**

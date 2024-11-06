@@ -25,9 +25,9 @@
       <h1>授業一覧</h1>
 
       <div class="top">
-　　　　　　　<button type="button" class="btn-success" onclick="location.href='curriculum_create'">
+              <a class="btn btn-primary" href="{{ route('show.curriculum.create') }}">
                新規登録
-             </button>
+              </a>
 
 　　　　　　     <div class='main'>
 
@@ -51,7 +51,7 @@
           @foreach ($curriculums as $curriculum)
 
         　　<div class='subbox'>
-              <img src="{{ asset('storage/sample.jpg') }}" />
+           <img src="{{ asset($curriculum->thumbnail) }}" alt="Current Thumbnail" width="150">
 
               <li class="list-group-item">
                {{ $curriculum->title }}

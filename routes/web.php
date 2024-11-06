@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TopController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CurriculumController;
+use App\Http\Controllers\DeliveryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +30,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/top', [App\Http\Controllers\TopController::class, 'showTop'])->name('top')->middleware('auth');
 Route::get('/article_list', [App\Http\Controllers\ArticleController::class, 'index'])->name('article_list');
 
-Route::get('/curriculum_list/{id}', [CurriculumController::class, 'showCurriculumList'])->name('show.curriculum.list');
+Route::get('/curriculum_list/{id?}', [CurriculumController::class, 'showCurriculumList'])->name('show.curriculum.list');
 Route::get('/curriculum_edit/{id}', [CurriculumController::class, 'showCurriculumEdit'])->name('show.curriculum.edit');
-Route::get('/delivery/{curriculums_id}', [CurriculumController::class, 'showDeliveryEdit'])->name('show.delivery.edit');
+Route::get('/curriculum_create', [CurriculumController::class, 'showCurriculumCreate'])->name('show.curriculum.create');
+Route::post('/curriculum_create', [CurriculumController::class, 'storeCurriculumCreate'])->name('store.curriculum.create');
+Route::post('/curriculum_edit/{id}', [CurriculumController::class, 'update'])->name('curriculum.update');
+Route::get('/delivery/{curriculums_id}', [DeliveryController::class, 'showDeliveryEdit'])->name('show.delivery.edit');
+// Route::post('/delivery/{curriculumId}', [DeliveryController::class, 'updateDeliveryTimes'])->name('delivery.update');
+ Route::post('/delivery/{curriculumId}', [DeliveryController::class, 'store'])->name('delivery.store');
 
 
 
