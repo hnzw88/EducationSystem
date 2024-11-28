@@ -23,23 +23,32 @@
                 <div class="form-group">
                     <label for="thumbnail">サムネイル画像</label>
                     <input type="file" class="form-control" id="thumbnail" name="thumbnail">
+
+                    @error('thumbnail')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
 
 
         </div>
 
+
         <div class="form-group">
             <label for="price">学年</label>
 
-          <select name="grade_id">
-            <option>{{ $curriculum->grade->name }}</option>
+          <select name="curriculum_id">
+            <option value="{{ $gradeId }}">{{ $curriculum->grade->name }}</option>
               @foreach ($grades as $grade)
               
               @if($curriculum->grade->name !== $grade->name)
-              <option value="{{ $grade->id }}">{{ $grade->name }}</option>
+              <option value="{{ $grade->id }}">{{ $grade->name }}>
+              </option>
               @endif
               @endforeach
           </select>
+          @error('grade_id')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
         </div>
 
         <div class="form-group">
@@ -48,14 +57,20 @@
             @if($errors->has('title'))
                 <p>{{ $errors->first('title') }}</p>
             @endif
+            @error('title')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
         </div>
 
         <div class="form-group">
             <label for="price">動画URL</label>
             <input type="text" class="form-control" id="" name="video_url" placeholder="動画URL" value="{{ old('video_url',$curriculum->video_url) }}">
-            @if($errors->has('curriculum->video_url'))
+            @if($errors->has('video_url'))
                 <p>{{ $errors->first('curriculum->video_url') }}</p>
             @endif
+            @error('video_url')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
         </div>
 
         <div class="form-group">
@@ -64,13 +79,20 @@
             @if($errors->has('curriculum->video_url'))
                 <p>{{ $errors->first('curriculum->video_url') }}</p>
             @endif
+            @error('description')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
         </div>
 
         <label>
-          <li>
+          
+           <input type="hidden" name="alway_delivery_flg" value="0">
            <input type="checkbox" name="tags" value="{{ $curriculum->alway_delivery_flg }}"
             {{ $curriculum->alway_delivery_flg  == 1 ? 'checked' : '' }}> 常時公開
-          </li>
+            @error('alway_delivery_flg')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+
         </label>
 
 

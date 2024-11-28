@@ -24,7 +24,8 @@ class DeliveryTimeRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'delivery_from'=>'',
+            'delivery_to'=>''
         ];
     }
 }

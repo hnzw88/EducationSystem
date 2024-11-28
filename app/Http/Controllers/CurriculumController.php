@@ -8,6 +8,7 @@ use App\Models\Grade;
 use App\Models\DeliveryTime;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\CurriculumRequest;
 
 
 class CurriculumController extends Controller
@@ -46,10 +47,11 @@ class CurriculumController extends Controller
 
         $grades = Grade::all();
         $curriculum = Curriculum::find($id);
-
+        $gradeId = Grade::find($id)->id;
         return view('curriculum_edit')->with([
           'grades'=>$grades,
-          'curriculum'=>$curriculum
+          'curriculum'=>$curriculum,
+          'gradeId' =>$gradeId
         ]);
     }
 
@@ -147,14 +149,14 @@ return redirect(route('show.curriculum.list'));
 }
 
 
-    public function update(Request $request, $id)
+    public function update(CurriculumRequest $request, $id)
     {
       
       //dd($request);
       $curriculum = Curriculum::find($id);
       
 
-      
+      // dd($request->curriculum_id);
 
       DB::beginTransaction();
       try{
@@ -178,6 +180,10 @@ return redirect(route('show.curriculum.list'));
           
         }
 
+        if($request->tags === null){
+          $request->tags = 0;
+        }
+        // dd($request->tags);
         $curriculum->updateCurriculum($request, $curriculum,$file_name);
         
        // dd($request);

@@ -6,7 +6,6 @@
 
     <link rel="stylesheet" href="{{ asset('css/curriclum_list.css') }}">
 
-
   </head>
   <body>
 
@@ -57,7 +56,7 @@
                {{ $curriculum->title }}
             　</li>
 
-              <ul>
+              <ul class="box">
                 @foreach($delivery_times as $delivery_time)
                 @if($delivery_time->curriculums_id === $curriculum->id)
                 <li>{{ date('m月d日', strtotime($delivery_time->delivery_from)) }}</li>

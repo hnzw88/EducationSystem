@@ -58,6 +58,7 @@ class Curriculum extends Model
   {
     //dd($request);
         $curriculum->thumbnail = $file_name;
+        $curriculum->grade_id = $request->curriculum_id;
         $curriculum->title = $request->title;
         $curriculum->video_url = $request->video_url;
         //phpadmin カラム　　　input　内のname属性のデータ

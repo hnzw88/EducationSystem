@@ -21,29 +21,35 @@
 
 
 
-  <div>
-    @foreach($delivery_times as $delivery_time)
-        <div class="delivery-row">
-            <input type="date" name="from_date_{{ $delivery_time->id }}" value="{{ date('Y-m-d', strtotime($delivery_time->delivery_from)) }}">
-            <input type="time" name="from_time_{{ $delivery_time->id }}" value="{{ date('H:i', strtotime($delivery_time->delivery_from)) }}">
-            <span>~</span>
-            <input type="date" name="to_date_{{ $delivery_time->id }}" value="{{ date('Y-m-d',strtotime($delivery_time->delivery_to)) }}" >
-            <input type="time" name="to_time_{{ $delivery_time->id }}" value="{{ date('H:i', strtotime($delivery_time->delivery_to)) }}">
-            <button type="button" class="remove-form" id="delete-form">-</button>
+   <div id="delivery-times-container">
+        @if($delivery_times->isEmpty())
+            {{-- 配信日時が設定されていない場合、デフォルトの空のフォームを表示 --}}
+            <div class="delivery-row">
+                <input type="date" name="from_date_new[]" value="">
+                <input type="time" name="from_time_new[]" value="">
+                <span>~</span>
+                <input type="date" name="to_date_new[]" value="">
+                <input type="time" name="to_time_new[]" value="">
+                <button type="button" class="remove-form" id="delete-form">-</button>
+            </div>
+        @else
+            @foreach($delivery_times as $delivery_time)
+                <div class="delivery-row">
+                    <input type="date" name="from_date_{{ $delivery_time->id }}" value="{{ date('Y-m-d', strtotime($delivery_time->delivery_from)) }}">
+                    <input type="time" name="from_time_{{ $delivery_time->id }}" value="{{ date('H:i', strtotime($delivery_time->delivery_from)) }}">
+                    <span>~</span>
+                    <input type="date" name="to_date_{{ $delivery_time->id }}" value="{{ date('Y-m-d',strtotime($delivery_time->delivery_to)) }}">
+                    <input type="time" name="to_time_{{ $delivery_time->id }}" value="{{ date('H:i', strtotime($delivery_time->delivery_to)) }}">
+                    <button type="button" class="remove-form" id="delete-form">-</button>
+                </div>
+            @endforeach
+        @endif
+    </div>
 
-        </div>
-    @endforeach
-  </div>
-  <button type="button" class="btn btn-success" id="add-form">+</button>
+    <button type="button" class="btn btn-success" id="add-form">+</button>
 
-
-
-
-<button type="submit">登録</button>
-
-<button type="button" onclick="location.href='{{route('show.curriculum.list') }}' ">戻る</button>
-
-</div>
+    <button type="submit">登録</button>
+    <button type="button" onclick="location.href='{{route('show.curriculum.list') }}' ">戻る</button>
 
 </form>
 
