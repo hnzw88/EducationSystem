@@ -36,7 +36,6 @@ class CurriculumRequest extends FormRequest
         return [
             'title.required' => 'タイトルを入力してください。',
             'titleame.max' => 'タイトルは25文字以内で入力してください。',
-            'thumbnail.required' => '画像を入れて下さい',
             'thumbnail.image' => '画像ファイルを選択してください。',
             'thumbnail.max' => 'ファイルサイズは～までです。',
             'description.max' => 'コメントを10000文字以内にしてください。',

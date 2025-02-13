@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // 新しい行のHTML
         const newRow = `
             <div class="delivery-row">
-                <input type="date" name="text_1[]" value="">
-                <input type="time" name="text_2[]" value="">
+                <input type="date" name="from_date" value="">
+                <input type="time" name="rom_time" value="">
                 <span>~</span>
-                <input type="date" name="text_1[]" value="">
-                <input type="time" name="text_2[]" value="">
+                <input type="date" name="to_date" value="">
+                <input type="time" name="to_time" value="">
                 <button type="button" class="remove-form">-</button>
             </div>
         `;

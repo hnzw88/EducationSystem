@@ -47,11 +47,9 @@ class CurriculumController extends Controller
 
         $grades = Grade::all();
         $curriculum = Curriculum::find($id);
-        $gradeId = Grade::find($id)->id;
         return view('curriculum_edit')->with([
           'grades'=>$grades,
-          'curriculum'=>$curriculum,
-          'gradeId' =>$gradeId
+          'curriculum'=>$curriculum
         ]);
     }
 
@@ -107,7 +105,7 @@ try {
     $file_name = $request->file('thumbnail')->getClientOriginalName();
     //dd($file_name);
     $request->file('thumbnail')->storeAs('public', $file_name);
-    $alwaysDeliveryFlag = $request->has('alway_delivery_flg') ? 1 : 0;
+    // $alwaysDeliveryFlag = $request->has('alway_delivery_flg') ? 1 : 0;
     $path = 'storage/'.$file_name;
   }else{
     $file_name = null;
@@ -128,8 +126,8 @@ try {
       'thumbnail' => $path,
       'description' => $request->description,
       'video_url' => $request->video_url,
-      //'alway_delivery_flg' => $request->alway_delivery_flg,
-      'alway_delivery_flg' => $alwaysDeliveryFlag,
+      'alway_delivery_flg' => $request->alway_delivery_flg,
+      // 'alway_delivery_flg' => $alwaysDeliveryFlag,
       'grade_id' => $request->grade_id
   ]);
 

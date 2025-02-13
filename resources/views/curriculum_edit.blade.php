@@ -37,11 +37,11 @@
             <label for="price">学年</label>
 
           <select name="curriculum_id">
-            <option value="{{ $gradeId }}">{{ $curriculum->grade->name }}</option>
+            <option value="{{ $curriculum->grade_id }}">{{ $curriculum->grade->name }}</option>
               @foreach ($grades as $grade)
               
               @if($curriculum->grade->name !== $grade->name)
-              <option value="{{ $grade->id }}">{{ $grade->name }}>
+              <option value="{{ $grade->id }}">{{ $grade->name }}
               </option>
               @endif
               @endforeach
